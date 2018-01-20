@@ -136,7 +136,9 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     protected void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
+        if (account!=null) {
+            updateUI(account);
+        }
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
