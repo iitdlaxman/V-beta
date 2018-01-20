@@ -29,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -153,6 +154,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
     }
     private void updateUI(GoogleSignInAccount account) {
+        Toast.makeText(getApplicationContext(),"Name: "+account.getDisplayName(),Toast.LENGTH_LONG).show();
         justInfo.setText(account.getDisplayName());
     }
 
