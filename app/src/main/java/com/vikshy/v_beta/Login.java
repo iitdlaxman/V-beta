@@ -106,6 +106,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         mProgressView = findViewById(R.id.login_progress);
 
         //Sign in using Google
+        justInfo = (TextView) findViewById(R.id.JustForNow);
         final GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail().build();
         final GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
