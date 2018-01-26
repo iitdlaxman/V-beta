@@ -2,8 +2,10 @@ package com.vikshy.v_beta;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,14 +15,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.daimajia.slider.library.SliderLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.vikshy.v_beta.bannerSlider.HomeBannerSlider;
+import com.vikshy.v_beta.commons.Constants;
+import com.vikshy.v_beta.firebase.RemoteConfig;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     SliderLayout bannerSlider;
+    FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +38,13 @@ public class Home extends AppCompatActivity
         setContentView(R.layout.home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mFirebaseRemoteConfig = RemoteConfig.getConfigInstance(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent login = new Intent(getBaseContext(),Login.class);
+                Intent login = new Intent(getBaseContext(), Login.class);
                 startActivity(login);
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -51,7 +62,7 @@ public class Home extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         bannerSlider = (SliderLayout) findViewById(R.id.slider);
-        bannerSlider = HomeBannerSlider.getInstance(this).prepareSliderLayout(bannerSlider);
+        bannerSlider = HomeBannerSlider.getInstance(this).prepareSliderLayout(bannerSlider, mFirebaseRemoteConfig);
     }
 
     @Override
