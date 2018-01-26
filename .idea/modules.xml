@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/V-beta.iml" filepath="$PROJECT_DIR$/V-beta.iml" />
-      <module fileurl="file://G:\stuff\android\V-beta\Vbeta.iml" filepath="G:\stuff\android\V-beta\Vbeta.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vbeta.iml" filepath="$PROJECT_DIR$/Vbeta.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
