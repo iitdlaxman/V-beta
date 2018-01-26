@@ -14,8 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.daimajia.slider.library.SliderLayout;
+import com.vikshy.v_beta.bannerSlider.HomeBannerSlider;
+
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    SliderLayout bannerSlider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,8 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        bannerSlider = (SliderLayout) findViewById(R.id.slider);
+        bannerSlider = HomeBannerSlider.getInstance(this).prepareSliderLayout(bannerSlider);
     }
 
     @Override
@@ -103,4 +110,12 @@ public class Home extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    protected void onStop() {
+        // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
+        bannerSlider.stopAutoCycle();
+        super.onStop();
+    }
+
 }
